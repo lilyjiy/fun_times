@@ -1,0 +1,63 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+# command shift k -- html file pops up
+#command+option+i do not put install.packages('dplyr') in Rmd file
+
+## Loading packages
+
+I need to load dplyr... seems like ...
+```{r}
+library(dplyr)
+```
+## Working with data
+explore dplyr functionality:
+```{r}
+mtcars %>%    # unique symbol in dplyr
+  select(mpg, cyl, disp, hp)
+```
+# command shift m -- pipe
+
+## Group by and summarize
+```{r}
+mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(mean_mpg = mean(mpg))
+```
+## Mutation: add new columns
+```{r}
+matcars <- mtcars %>% 
+   mutate(mpg_wt = mpg / wt,
+         wt = wt * 1000)
+```
+View(mtcars)
+```{r}
+mtcars$mpg_wt <- mtcars$mpg / mtcars$wt
+```
+View(mtcars) ##another way of adding a column
+summary(mtcars)
+
+## Visualization
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(x = mpg, y = wt, color = cyl)) +
+  geom_point(alpha = .5) +
+  theme_minimal()
+```
+#install.packages("ggplot2") in console
+
+
+#install.packages('DT') in console -- to search datatable
+```{r}
+DT::datatable(mtcars)
+```
+
+
+
+
+
